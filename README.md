@@ -22,14 +22,15 @@
 * ✔ `je lbl` **J**ump to the label `lbl` if the values of the previous `cmp` were **E**qual
 * ✔ `jmp lbl` **J**u**mp** to the label `lbl`
 
+* ✔ `jge lbl` **J**ump to the label `lbl` if register `x` was **G**reater than or **E**qual to `y` in the previous `cmp`
+* ✔ `jg lbl` **J**ump to the label `lbl` if register `x` was **G**reater than `y` in the previous `cmp`
+* ✔ `jle lbl` **J**ump to the label `lbl` if register `x` was **L**esser than or **E**qual to `y` in the previous `cmp`
+* ✔ `jl lbl` **J**ump to the label `lbl` if register `x` was **L**esser than `y` in the previous `cmp`
+
 ### Planned
 * ✘ `call lbl` Procedure **call** to the subroutine identified by the label `lbl`
 * ✘ `ret` **Ret**urn to the instruction that called the current subroutine
 
-* ✘ `jge lbl` **J**ump to the label `lbl` if register `x` was **G**reater than or **E**qual to `y` in the previous `cmp`
-* ✘ `jg lbl` **J**ump to the label `lbl` if register `x` was **G**reater than `y` in the previous `cmp`
-* ✘ `jle lbl` **J**ump to the label `lbl` if register `x` was **L**esser than or **E**qual to `y` in the previous `cmp`
-* ✘ `jl lbl` **J**ump to the label `lbl` if register `x` was **L**esser than `y` in the previous `cmp`
 * ✘ Functions like write, clear
 * ✘ The ability to run other code
 
