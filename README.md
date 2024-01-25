@@ -26,6 +26,7 @@
 * ✔ `jg lbl` **J**ump to the label `lbl` if register `x` was **G**reater than `y` in the previous `cmp`
 * ✔ `jle lbl` **J**ump to the label `lbl` if register `x` was **L**esser than or **E**qual to `y` in the previous `cmp`
 * ✔ `jl lbl` **J**ump to the label `lbl` if register `x` was **L**esser than `y` in the previous `cmp`
+* ✔ `nop` **N**o **OP**eration, ignored by the interpreter
 
 ### Planned
 * ✘ `call lbl` Procedure **call** to the subroutine identified by the label `lbl`
