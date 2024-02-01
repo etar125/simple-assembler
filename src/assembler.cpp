@@ -27,13 +27,21 @@ std::map<std::string, int> assembler(std::vector<std::string> const& assembly)
   {
     return isalpha(ins[0]) ? registers[ins] : std::stoi(ins);
   };
+  std::vector<int> lastcall;
+  int countcall = 0;
+
+  for (int i = 0; i < assembly.size(); i++)
+  {
+    if (instruction[0][instruction[0].length()-1] == ':') labels.insert({ instruction[0].substr(0, instruction[0].length()-1), i });
+  }
+
   for (int i = 0; i < assembly.size(); i++)
   {
     std::vector<std::string> instruction = split(assembly[i]);
 
     if (instruction[0][0] == ';') continue;
     else if (instruction[0] == "nop") continue;
-    else if (instruction[0][instruction[0].length()-1] == ':') labels.insert({ instruction[0].substr(0, instruction[0].length()-1), i });
+    else if (instruction[0][instruction[0].length()-1] == ':') continue;
 
     else if (instruction[0] == "mov") registers[instruction[1]] = get_val(instruction[2]);
     else if (instruction[0] == "inc") registers[instruction[1]]++;
@@ -62,6 +70,20 @@ std::map<std::string, int> assembler(std::vector<std::string> const& assembly)
       else if (instruction[0] == "jle" && cr == 1 || instruction[0] == "jle" && cr == 2) i = labels[instruction[1]];
       else if (instruction[0] == "jle" && cr == 2) i = labels[instruction[1]];
       cr = CompareResult::Empty;
+    }
+
+    else if (instruction[0] == "call")
+    {
+      lastcall.push_back(i + 1);
+      count++;
+      i = labels[instruction[1]];
+    }
+
+    else if (instruction[0] == "ret" && count != 0)
+    {
+      count--;
+      i = lastcall[count];
+      lastcall.erase(count);
     }
   }
   return registers;
