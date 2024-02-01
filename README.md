@@ -32,7 +32,6 @@
 * ✘ `call lbl` Procedure **call** to the subroutine identified by the label `lbl`
 * ✘ `ret` **Ret**urn to the instruction that called the current subroutine
 
-* ✘ Functions like write, clear
 * ✘ The ability to run other code
 
 ### Further Instructions
