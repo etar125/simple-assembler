@@ -3,6 +3,21 @@
 
 **This fork is designed for implement all planned instructions.**
 
+Code example:
+```
+# jump to main
+jmp main
+# a * b function
+do_magic:
+mul a b
+ret
+# main
+main:
+mov a 12
+mov b 5
+call do_magic
+```
+
 ### Implemented Instructions
 * ✔ `mov x y` **Mov**e the contents of register `y` into register `x` (`x = y`)
 * ✔ `inc x` **Inc**rement register `x` by one (`x++`)
@@ -28,11 +43,14 @@
 * ✔ `jl lbl` **J**ump to the label `lbl` if register `x` was **L**esser than `y` in the previous `cmp`
 * ✔ `nop` **N**o **OP**eration, ignored by the interpreter
 
-### Planned
-* ✘ `call lbl` Procedure **call** to the subroutine identified by the label `lbl`
-* ✘ `ret` **Ret**urn to the instruction that called the current subroutine
+* ✔ `call lbl` Procedure **call** to the subroutine identified by the label `lbl`
+* ✔ `ret` **Ret**urn to the instruction that called the current subroutine
 
-* ✘ The ability to run other code
+* ✔ The ability to run other code
+
+### Planned
+
+nothing
 
 ### Further Instructions
 Reference: [Intel 80x86 ASM Opcodes](http://www.mathemainzel.info/files/x86asmref.html)
