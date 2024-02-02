@@ -28,10 +28,11 @@ std::map<std::string, int> assembler(std::vector<std::string> const& assembly)
     return isalpha(ins[0]) ? registers[ins] : std::stoi(ins);
   };
   std::vector<int> lastcall;
-  int countcall = 0;
+  int countcalli = 0;
 
   for (int i = 0; i < assembly.size(); i++)
   {
+    std::vector<std::string> instruction = split(assembly[i]);
     if (instruction[0][instruction[0].length()-1] == ':') labels.insert({ instruction[0].substr(0, instruction[0].length()-1), i });
   }
 
@@ -65,9 +66,9 @@ std::map<std::string, int> assembler(std::vector<std::string> const& assembly)
       else if (instruction[0] == "jmp") i = labels[instruction[1]];
       else if (instruction[0] == "je" && cr == 1) i = labels[instruction[1]];
       else if (instruction[0] == "jne" && cr != 1) i = labels[instruction[1]];
-      else if (instruction[0] == "jge" && cr == 1 || instruction[0] == "jle" && cr == 3) i = labels[instruction[1]];
+      else if ( ( instruction[0] == "jge" && cr == 1 ) || ( instruction[0] == "jle" && cr == 3 ) ) i = labels[instruction[1]];
       else if (instruction[0] == "jge" && cr == 3) i = labels[instruction[1]];
-      else if (instruction[0] == "jle" && cr == 1 || instruction[0] == "jle" && cr == 2) i = labels[instruction[1]];
+      else if ( ( instruction[0] == "jle" && cr == 1 ) || ( instruction[0] == "jle" && cr == 2 ) ) i = labels[instruction[1]];
       else if (instruction[0] == "jle" && cr == 2) i = labels[instruction[1]];
       cr = CompareResult::Empty;
     }
@@ -75,15 +76,15 @@ std::map<std::string, int> assembler(std::vector<std::string> const& assembly)
     else if (instruction[0] == "call")
     {
       lastcall.push_back(i + 1);
-      count++;
+      countcalli++;
       i = labels[instruction[1]];
     }
 
-    else if (instruction[0] == "ret" && count != 0)
+    else if (instruction[0] == "ret" && countcalli != 0)
     {
-      count--;
-      i = lastcall[count];
-      lastcall.erase(count);
+      countcalli--;
+      i = lastcall[countcalli];
+      lastcall.erase(lastcall.begin() + countcalli);
     }
   }
   return registers;
