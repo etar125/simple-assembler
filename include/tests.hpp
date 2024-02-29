@@ -27,5 +27,27 @@ map<vector<string>, map<string, int>> tests
 			{ "b", 1 },
 			{ "c", 7 }
 		}
+	},
+
+	// calculating 2^15
+
+	{
+		{
+			"mov a 2",
+			"mov b 2",
+			"mov c 0",
+			"loop:",
+			"mul a b",
+			"inc c",
+			"cmp c 14",
+			"jl loop",
+			"mov b 3"
+		},
+
+		{
+			{ "a", 32768 },
+			{ "b", 3 },
+			{ "c", 14 }
+		}
 	}
 };
