@@ -67,9 +67,9 @@ std::map<std::string, int> assembler(std::vector<std::string> const& assembly)
       else if (instruction[0] == "je" && cr == 1) i = labels[instruction[1]];
       else if (instruction[0] == "jne" && cr != 1) i = labels[instruction[1]];
       else if ( ( instruction[0] == "jge" && cr == 1 ) || ( instruction[0] == "jle" && cr == 3 ) ) i = labels[instruction[1]];
-      else if (instruction[0] == "jge" && cr == 3) i = labels[instruction[1]];
+      else if (instruction[0] == "jg" && cr == 3) i = labels[instruction[1]];
       else if ( ( instruction[0] == "jle" && cr == 1 ) || ( instruction[0] == "jle" && cr == 2 ) ) i = labels[instruction[1]];
-      else if (instruction[0] == "jle" && cr == 2) i = labels[instruction[1]];
+      else if (instruction[0] == "jl" && cr == 2) i = labels[instruction[1]];
       cr = CompareResult::Empty;
     }
 
